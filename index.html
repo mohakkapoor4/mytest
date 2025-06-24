@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HermesGPT - Automated Internship Outreach Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>HermesGPT - Automated Internship Outreach Bot 🚀</h1>
+        <p>HermesGPT is an intelligent automation tool designed to streamline the process of reaching out to recruiters for internship opportunities. It integrates AI-generated personalized cold emails, database management, email verification, and automated sending using Gmail API.</p>
+        <h2>Features</h2>
+        <ul>
+            <li>📄 <b>Resume Parsing:</b> Loads and processes resume data for personalized email generation.</li>
+            <li>🤖 <b>AI-Powered Emails:</b> Uses Gemini AI to generate tailored cold emails.</li>
+            <li>📬 <b>Automated Email Sending:</b> Sends emails via Gmail API with attachments.</li>
+            <li>✅ <b>Email Verification:</b> Uses SMTP and Maileroo API to validate emails before sending.</li>
+            <li>🗄 <b>Database Management:</b> Stores recruiter data in PostgreSQL and tracks outreach progress.</li>
+            <li>🔄 <b>Batch Processing:</b> Sends emails in batches with randomized delays to prevent spam detection.</li>
+        </ul>
+        <h2>Setup Instructions</h2>
+        <ol>
+            <li><b>Clone the Repository</b><br>
+                <code>git clone https://github.com/your-username/HermesGPT.git<br>cd HermesGPT</code>
+            </li>
+            <li><b>Install Dependencies</b><br>
+                Make sure you have Python installed, then install the required packages:<br>
+                <code>pip install -r requirements.txt</code>
+            </li>
+            <li><b>Configure Database</b><br>
+                Set up a PostgreSQL database with the following schema:<br>
+                <pre><code>CREATE TABLE recruiters (
+    email TEXT PRIMARY KEY,
+    recruiter_name TEXT,
+    company_name TEXT,
+    role TEXT,
+    contacted BOOLEAN DEFAULT FALSE
+);</code></pre>
+            </li>
+            <li><b>Set Up Gmail API</b><br>
+                Enable the Gmail API from Google Cloud Console.<br>
+                Download <code>credentials.json</code> and place it in the project directory.<br>
+                Run authentication:<br>
+                <code>python main.py</code>
+            </li>
+            <li><b>API Keys</b><br>
+                Gemini AI API: Add your Gemini API key to the <code>API_KEY</code> variable.
+            </li>
+            <li><b>Load Recruiter Data</b><br>
+                Prepare a CSV file (<code>recruiters.csv</code>) with the following columns:<br>
+                <code>Email, Name, Company, Title</code><br>
+                Then, load it into the database:<br>
+                <code>python -c "from main import load_recruiters; load_recruiters('recruiters.csv')"</code>
+            </li>
+            <li><b>Run the Outreach Script</b><br>
+                <code>python main.py</code>
+            </li>
+        </ol>
+        <h2>How It Works</h2>
+        <ol>
+            <li>Resume Loading: The script reads the resume and stores its details in AI memory.</li>
+            <li>Recruiter Selection: Fetches recruiters from the database who haven't been contacted.</li>
+            <li>Email Verification: Ensures the email is valid before sending.</li>
+            <li>AI-Generated Email: Gemini AI crafts a custom email based on the recruiter's details.</li>
+            <li>Automated Sending: Uses Gmail API to send the email with an attached resume.</li>
+            <li>Logging & Tracking: Updates the database to mark recruiters as contacted.</li>
+        </ol>
+        <h2>Future Improvements</h2>
+        <ul>
+            <li>🌍 Multi-language support</li>
+            <li>🔎 Enhanced recruiter filtering</li>
+            <li>📊 Analytics dashboard for tracking response rates</li>
+        </ul>
+    </div>
+</body>
+</html>
